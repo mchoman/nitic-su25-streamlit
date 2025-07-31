@@ -28,19 +28,24 @@ data_load_state.text("Done! (using st.cache_data)")
 
 # Present a checkbox to toggle on / off raw data.
 show_raw_data_checkbox = st.checkbox("Show raw data")
-st.write(show_raw_data_checkbox)
 
 if show_raw_data_checkbox:
     st.subheader('Raw data')
     st.write(data)
 
-if st.checkbox('Show bar chart'):
+# Present a checkbox to toggle on / off bar chart.
+show_bar_chart_checkbox = st.checkbox("Show bar chart")
+
+if show_bar_chart_checkbox:
     st.subheader('Number of pickups by hour')
     hist_values = np.histogram(
         data[DATE_COLUMN].dt.hour, bins=24, range=(0,24))[0]
     st.bar_chart(hist_values)
 
-if st.checkbox('Show map'):
+# Present a checkbox to toggle on / off map.
+show_map_checkbox = st.checkbox("Show map")
+
+if show_map_checkbox:
     st.subheader('Map of all pickups')
     st.map(data)
     hour_to_filter = st.slider('hour', 0, 23, 17)
